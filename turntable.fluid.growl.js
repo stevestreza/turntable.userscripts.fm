@@ -6,11 +6,25 @@
 // ==/UserScript==
 
 $(function(){
+    var getRoom = function(){
+               if(turntable && turntable.WXhYRJcbeIUOlt){
+                    return turntable.WXhYRJcbeIUOlt;
+               }else{
+                    return null;
+               }
+    };
+    var getRoomManager = function(){
+        var room = getRoom();
+        if(room){
+            return room.olmtyFzLJDfiqH;
+        }
+    };
+    
 	if(window.fluid){
 		if(turntable){
 			var currentSong = null;
 			turntable.addEventListener("soundstart", function(event){
-				var room = turntable.topViewController;
+				var room = getRoom();
 				if(room.currentSong && currentSong != room.currentSong){
 					currentSong = room.currentSong;
 					var songData = currentSong.metadata;
